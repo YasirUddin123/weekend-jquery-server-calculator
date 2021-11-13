@@ -23,8 +23,8 @@ In this project, the history will exist even after refreshing the page. The hist
 
 ## High Level Development Plan
 
-    * Create our dynamic and static files
-    * Lay out the fundamental HTML structure for the calculator
+    * Create our dynamic and static files ✅
+    * Lay out the fundamental HTML structure for the calculator ✅
     * Build out the JS logic for the client-side for requests
     * Build out the JS logic for the server-side for computations and history
     * Make sure the page loads correctly after each computation
