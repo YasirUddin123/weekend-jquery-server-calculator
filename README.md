@@ -20,3 +20,12 @@ When the calculation is complete, an OK will be sent back. After the POST, a GET
 A historical record of all math operations and solutions will be kept on the server. A list of all previous calculations will be displayed on the page when it loads using a GET request. The list is updated every time a new calculation is made.
 
 In this project, the history will exist even after refreshing the page. The history will go away after restarting the server.
+
+## High Level Development Plan
+
+    * Create our dynamic and static files
+    * Lay out the fundamental HTML structure for the calculator
+    * Build out the JS logic for the client-side for requests
+    * Build out the JS logic for the server-side for computations and history
+    * Make sure the page loads correctly after each computation
+    * Test, test, test
