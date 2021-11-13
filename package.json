@@ -1,0 +1,23 @@
+{
+  "name": "weekend-jquery-server-calculator",
+  "version": "1.0.0",
+  "description": "In this project, I am building a server-side calculator. The logic for the calculator is implemented on the server.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YasirUddin123/weekend-jquery-server-calculator.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/YasirUddin123/weekend-jquery-server-calculator/issues"
+  },
+  "homepage": "https://github.com/YasirUddin123/weekend-jquery-server-calculator#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
