@@ -7,6 +7,8 @@ let addition = {
     data: []
 };
 
+
+
 let currentTotal = {
     data: 0
 }
@@ -71,6 +73,8 @@ function doCalculation(object) {
         currentTotal.data = division;
         addition.data.push(object);
     }
+    console.log(addition);
+
 }
 
 // Start server. Listen for requests.
