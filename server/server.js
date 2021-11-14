@@ -27,17 +27,26 @@ app.get('/addition', (req, res) => {
 // Get a firstNumber object from the client.
     // Example: { number: 2 };
 // Then, add the object to firstNumber array.
+// grabs the ajax post data and does whatever it needs to do
+// to put on server side (aka put in array)
 app.post('/addition', (req, res) => {
     console.log('in POST /addition');
     // Console log to make sure req.body data works when coming in:
     console.log('req.body', req.body);
     // Push req.body data into firstNumber array;
+    doCalculation();
     addition.push(req.body);
     // Send HTTP Status Code 201 to client. This code means:
         // The client's request is complete and enabled a new resource created.
     res.sendStatus(201);
 });
 
+function doCalculation() {
+    if(newNumber.operator === '+'){
+        sum = newNumber.firstNumber + newNumber.lastNumber;
+    }
+    addition.push(sum);
+}
 // Start server. Listen for requests.
 app.listen(5000, function () {
     console.log('Our express server is running!');
