@@ -1,7 +1,6 @@
-// Let's keep it simple. Let me create a baby step.
-// The first step will take the first number input and
-// When '=' is clicked, the input will be captured, bundled up in an object
-// and will be sent to the server via a POST.
+// Now my second goal is to make sure the second number is captured
+// in the same mannas the first number.
+
 $(document).ready(onReady);
 
 function onReady() {
@@ -13,13 +12,13 @@ function onReady() {
 function renderFirstNumber(){
     $.ajax({
         method: 'GET',
-        url: '/firstnumber'
+        url: '/firstandsecondnumber'
     }).then((response) => {
         console.log('response', response);
         $('#calculationHistory').empty();
         for(let number of response) {
             $('#calculationHistory').append(`
-                <li>${number.output}</li>
+                <li>${number.firstNumber} ${number.secondNumber}</li>
             `)
         }
     }).catch((error) => {
@@ -29,11 +28,12 @@ function renderFirstNumber(){
 
 function handleEqualButtonClick() {
     const newNumber = {
-        output: $('#firstNumber').val()
+        firstNumber: $('#firstNumber').val(),
+        secondNumber: $('#secondNumber').val()
     }
     $.ajax({
         method: 'POST',
-        url: '/firstnumber',
+        url: '/firstandsecondnumber',
         data: newNumber
     }).then((response) => {
         console.log('yay it worked!');

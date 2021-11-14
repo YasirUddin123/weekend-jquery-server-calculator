@@ -1,7 +1,5 @@
-// Let's keep it simple. Let me create a baby step.
-// The first step will take the first number input and
-// When '=' is clicked, the input will be captured, bundled up in an object
-// and will be sent to the server via a POST.
+// Now my second goal is to make sure the second number is captured
+// in the same mannas the first number.
 
 console.log('My server is working!');
 
@@ -21,16 +19,16 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Send the firstNumber array to our front-end
-app.get('/firstnumber', (req, res) => {
-    console.log('in GET /firstnumber');
+app.get('/firstandsecondnumber', (req, res) => {
+    console.log('in GET /firstandsecondnumber');
     res.send(firstNumber);
 });
 
 // Get a firstNumber object from the client.
     // Example: { number: 2 };
 // Then, add the object to firstNumber array.
-app.post('/firstnumber', (req, res) => {
-    console.log('in POST /firstnumber');
+app.post('/firstandsecondnumber', (req, res) => {
+    console.log('in POST /firstandsecondnumber');
     // Console log to make sure req.body data works when coming in:
     console.log('req.body', req.body);
     // Push req.body data into firstNumber array;
