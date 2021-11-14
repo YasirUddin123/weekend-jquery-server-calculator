@@ -8,6 +8,7 @@ function onReady() {
     renderAddition();
     $('#clickAddButton').on('click', addOperator)
     $('#clickEqualButton').on('click', handleEqualButtonClick);
+    $('#clickClearButton').on('click', handleClearButtonClick)
 }
 let operator;
 function addOperator() {
@@ -22,9 +23,9 @@ function renderAddition(){
     }).then((response) => {
         console.log('response', response);
         $('#calculationHistory').empty();
-        for(let number of response) {
+        for(let number of response.data) {
             $('#calculationHistory').append(`
-                <li>${number.firstNumber} ${operator} ${number.secondNumber}</li>
+                <li>${number.firstNumber} ${number.operator} ${number.secondNumber} = ${number.total}</li>
             `)
         }
     }).catch((error) => {
@@ -36,9 +37,9 @@ function handleEqualButtonClick() {
     let inputOne = $('#firstNumber').val();
     let inputTwo = $('#secondNumber').val()
     const newNumber = {
-        firstNumber: Number(inputOne),
-        operator:operator,
-        secondNumber: Number(inputTwo),
+        firstNumber: inputOne,
+        operator: operator,
+        secondNumber: inputTwo,
     }
     // takes the data from dom and send to the server
     $.ajax({
@@ -47,6 +48,10 @@ function handleEqualButtonClick() {
         data: newNumber
     }).then((response) => {
         console.log('yay it worked!');
+        $("#mostRecentCalculation").empty();
+        $("#mostRecentCalculation").append(`
+            Latest Calculation: ${response.data}
+        `)
         renderAddition();
     }).catch((error) => {
         console.log('dang this did not work');

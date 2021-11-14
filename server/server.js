@@ -3,7 +3,13 @@
 
 console.log('My server is working!');
 
-let addition = [];
+let addition = {
+    data: []
+};
+
+let currentTotal = {
+    data: 0
+}
 
 // I am loading the express library from node_modules/express
 const express = require('express');
@@ -33,20 +39,22 @@ app.post('/addition', (req, res) => {
     console.log('in POST /addition');
     // Console log to make sure req.body data works when coming in:
     console.log('req.body', req.body);
+    doCalculation(req.body);
     // Push req.body data into firstNumber array;
-    doCalculation();
-    addition.push(req.body);
     // Send HTTP Status Code 201 to client. This code means:
         // The client's request is complete and enabled a new resource created.
-    res.sendStatus(201);
+    res.send(currentTotal);
 });
 
-function doCalculation() {
-    if(newNumber.operator === '+'){
-        sum = newNumber.firstNumber + newNumber.lastNumber;
+function doCalculation(object) {
+    if(object.operator === '+'){
+        sum = Number(object.firstNumber) + Number(object.secondNumber);
+        object.total = sum;
+        currentTotal.data = sum;
+        addition.data.push(object);
     }
-    addition.push(sum);
 }
+
 // Start server. Listen for requests.
 app.listen(5000, function () {
     console.log('Our express server is running!');
