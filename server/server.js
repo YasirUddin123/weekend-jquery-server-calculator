@@ -1,12 +1,11 @@
-// Now my third goal is to make a single mathematical operation work.
-// I am focused on history.
-
 console.log('My server is working!');
 
+// This is our server history. The history is stored as an array inside of an object.
 let history = {
     data: []
 };
 
+// This is our current total. The current total is stored as an object.
 let currentTotal = {
     data: 0
 }
@@ -24,33 +23,33 @@ app.use(express.static('./server/public'))
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Send the firstNumber array to our front-end
+// Send server's data to our front-end client
 app.get('/history', (req, res) => {
     console.log('in GET /history');
     res.send(history);
 });
 
-// Get a firstNumber object from the client.
-    // Example: { number: 2 };
-// Then, add the object to firstNumber array.
-// grabs the ajax post data and does whatever it needs to do
-// to put on server side (aka put in array)
+// Get a newNumber object from the client via data converted into req.body
+// Then, add the newNumber object to server's history object.
 app.post('/history', (req, res) => {
     console.log('in POST /history');
     // Console log to make sure req.body data works when coming in:
     console.log('req.body', req.body);
+    // Call our function that performs our logic calculation
+    // req.body is our argument; object is our parameter where the function is defined below.
     doCalculation(req.body);
-    // Push req.body data into firstNumber array;
-    // Send HTTP Status Code 201 to client. This code means:
-        // The client's request is complete and enabled a new resource created.
+    // Send the result of the math operation to client.
     res.send(currentTotal);
 });
 
 function doCalculation(object) {
     if(object.operator === '+'){
         sum = Number(object.firstNumber) + Number(object.secondNumber);
+        // This is how we add the total as a new property to our req.body data
         object.total = sum;
+        // This is how we updated our current total to be sent to client
         currentTotal.data = sum;
+        // This is how we create and add our historical record on the server.
         history.data.push(object);
     }
     else if(object.operator === '-'){
@@ -71,6 +70,7 @@ function doCalculation(object) {
         currentTotal.data = division;
         history.data.push(object);
     }
+    // I wanted to log my history on the server to make it easy to see.
     console.log(history);
 
 }
