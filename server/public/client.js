@@ -1,24 +1,24 @@
-// Now my second goal is to make sure the second number is captured
-// in the same mannas the first number.
+// Now my third goal is to make a single mathematical operation work.
+// I am focused on addition.
 
 $(document).ready(onReady);
 
 function onReady() {
     console.log('jQuery is working!');
-    renderFirstNumber();
+    renderAddition();
     $('#clickEqualButton').on('click', handleEqualButtonClick);
 }
 
-function renderFirstNumber(){
+function renderAddition(){
     $.ajax({
         method: 'GET',
-        url: '/firstandsecondnumber'
+        url: '/addition'
     }).then((response) => {
         console.log('response', response);
         $('#calculationHistory').empty();
         for(let number of response) {
             $('#calculationHistory').append(`
-                <li>${number.firstNumber} ${number.secondNumber}</li>
+                <li>${number.addition}</li>
             `)
         }
     }).catch((error) => {
@@ -27,18 +27,54 @@ function renderFirstNumber(){
 };
 
 function handleEqualButtonClick() {
+    let inputOne = $('#firstNumber').val();
+    let inputTwo = $('#secondNumber').val()
     const newNumber = {
-        firstNumber: $('#firstNumber').val(),
-        secondNumber: $('#secondNumber').val()
+        addition: Number(inputOne) + Number(inputTwo)
     }
     $.ajax({
         method: 'POST',
-        url: '/firstandsecondnumber',
+        url: '/addition',
         data: newNumber
     }).then((response) => {
         console.log('yay it worked!');
-        renderFirstNumber();
+        renderAddition();
     }).catch((error) => {
         console.log('dang this did not work');
     })
 };
+
+// function renderFirstAndSecondNumber(){
+//     $.ajax({
+//         method: 'GET',
+//         url: '/firstandsecondnumber'
+//     }).then((response) => {
+//         console.log('response', response);
+//         $('#calculationHistory').empty();
+//         for(let number of response) {
+//             $('#calculationHistory').append(`
+//                 <li>${number.firstNumber} ${number.secondNumber}</li>
+//             `)
+//         }
+//     }).catch((error) => {
+//         console.log('error', error);
+//     })
+// };
+
+// function handleEqualButtonClick() {
+//     handlePlusButton()
+//     const newNumber = {
+//         firstNumber: $('#firstNumber').val(),
+//         secondNumber: $('#secondNumber').val()
+//     }
+//     $.ajax({
+//         method: 'POST',
+//         url: '/firstandsecondnumber',
+//         data: newNumber
+//     }).then((response) => {
+//         console.log('yay it worked!');
+//         renderFirstAndSecondNumber();
+//     }).catch((error) => {
+//         console.log('dang this did not work');
+//     })
+// };
