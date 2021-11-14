@@ -31,7 +31,7 @@ function divideOperator() {
 function renderAddition(){
     $.ajax({
         method: 'GET',
-        url: '/addition'
+        url: '/history'
     }).then((response) => {
         console.log('response', response);
         $('#calculationHistory').empty();
@@ -56,7 +56,7 @@ function handleEqualButtonClick() {
     // takes the data from dom and send to the server
     $.ajax({
         method: 'POST',
-        url: '/addition',
+        url: '/history',
         data: newNumber
     }).then((response) => {
         console.log('yay it worked!');
@@ -65,7 +65,6 @@ function handleEqualButtonClick() {
             Latest Calculation: ${response.data}
         `)
         renderAddition();
-        handleClearButtonClick();
     }).catch((error) => {
         console.log('dang this did not work');
     })

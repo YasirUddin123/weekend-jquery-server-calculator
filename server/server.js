@@ -1,13 +1,11 @@
 // Now my third goal is to make a single mathematical operation work.
-// I am focused on addition.
+// I am focused on history.
 
 console.log('My server is working!');
 
-let addition = {
+let history = {
     data: []
 };
-
-
 
 let currentTotal = {
     data: 0
@@ -27,9 +25,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Send the firstNumber array to our front-end
-app.get('/addition', (req, res) => {
-    console.log('in GET /addition');
-    res.send(addition);
+app.get('/history', (req, res) => {
+    console.log('in GET /history');
+    res.send(history);
 });
 
 // Get a firstNumber object from the client.
@@ -37,8 +35,8 @@ app.get('/addition', (req, res) => {
 // Then, add the object to firstNumber array.
 // grabs the ajax post data and does whatever it needs to do
 // to put on server side (aka put in array)
-app.post('/addition', (req, res) => {
-    console.log('in POST /addition');
+app.post('/history', (req, res) => {
+    console.log('in POST /history');
     // Console log to make sure req.body data works when coming in:
     console.log('req.body', req.body);
     doCalculation(req.body);
@@ -53,27 +51,27 @@ function doCalculation(object) {
         sum = Number(object.firstNumber) + Number(object.secondNumber);
         object.total = sum;
         currentTotal.data = sum;
-        addition.data.push(object);
+        history.data.push(object);
     }
     else if(object.operator === '-'){
         subtraction = Number(object.firstNumber) - Number(object.secondNumber);
         object.total = subtraction;
         currentTotal.data = subtraction;
-        addition.data.push(object);
+        history.data.push(object);
     }
     else if(object.operator === '*'){
         multiplication = Number(object.firstNumber) * Number(object.secondNumber);
         object.total = multiplication;
         currentTotal.data = multiplication;
-        addition.data.push(object);
+        history.data.push(object);
     }
     else if(object.operator === '/'){
         division = Number(object.firstNumber) / Number(object.secondNumber);
         object.total = division
         currentTotal.data = division;
-        addition.data.push(object);
+        history.data.push(object);
     }
-    console.log(addition);
+    console.log(history);
 
 }
 
