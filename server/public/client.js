@@ -7,12 +7,24 @@ function onReady() {
     console.log('jQuery is working!');
     renderAddition();
     $('#clickAddButton').on('click', addOperator)
+    $('#clickMinusButton').on('click', minusOperator)
+    $('#clickMultiplicationButton').on('click', multiplyOperator)
+    $('#clickDivisionButton').on('click', divideOperator)
     $('#clickEqualButton').on('click', handleEqualButtonClick);
-    $('#clickClearButton').on('click', handleClearButtonClick)
+    // $('#clickClearButton').on('click', handleClearButtonClick)
 }
 let operator;
 function addOperator() {
     operator = '+';
+}
+function minusOperator() {
+    operator = '-';
+}
+function multiplyOperator() {
+    operator = '*';
+}
+function divideOperator() {
+    operator = '/';
 }
 
 // grab the array from app.get and make the action to the dom.

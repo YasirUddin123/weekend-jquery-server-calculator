@@ -53,6 +53,24 @@ function doCalculation(object) {
         currentTotal.data = sum;
         addition.data.push(object);
     }
+    else if(object.operator === '-'){
+        subtraction = Number(object.firstNumber) - Number(object.secondNumber);
+        object.total = subtraction;
+        currentTotal.data = subtraction;
+        addition.data.push(object);
+    }
+    else if(object.operator === '*'){
+        multiplication = Number(object.firstNumber) * Number(object.secondNumber);
+        object.total = multiplication;
+        currentTotal.data = multiplication;
+        addition.data.push(object);
+    }
+    else if(object.operator === '/'){
+        division = Number(object.firstNumber) / Number(object.secondNumber);
+        object.total = division
+        currentTotal.data = division;
+        addition.data.push(object);
+    }
 }
 
 // Start server. Listen for requests.
