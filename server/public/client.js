@@ -11,7 +11,7 @@ function onReady() {
     $('#clickMultiplicationButton').on('click', multiplyOperator)
     $('#clickDivisionButton').on('click', divideOperator)
     $('#clickEqualButton').on('click', handleEqualButtonClick);
-    // $('#clickClearButton').on('click', handleClearButtonClick)
+    $('#clickClearButton').on('click', handleClearButtonClick)
 }
 let operator;
 function addOperator() {
@@ -65,10 +65,16 @@ function handleEqualButtonClick() {
             Latest Calculation: ${response.data}
         `)
         renderAddition();
+        handleClearButtonClick();
     }).catch((error) => {
         console.log('dang this did not work');
     })
 };
+
+function handleClearButtonClick() {
+    $('#firstNumber').val('');
+    $('#secondNumber').val('')
+}
 
 // function getSum() {
 //     $('#clickAddButton').on('click', function(){
